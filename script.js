@@ -23,6 +23,3 @@ function truncate(number, numDigits){
     let arr = str.split("");
     return +arr.slice(0, numDigits).join("");
 }//limit number to numDigits long
-
-let x = truncate(123456789.0123456789, 12);
-console.log(x);
