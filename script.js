@@ -14,7 +14,7 @@ digitsRow.addEventListener("click", e => {
         console.log("Operation: "+operation);
         console.log("Next Operation: "+nextOperation);
     }//only if inputBtn
-    else if(e.target.matches(".inputBtn") && operation !== "" && operation !== "="){
+    else if(e.target.matches(".inputBtn") && operation !== "" && operation !== "=" && operation !== "ERR"){
         numberB += e.target.value;
         inputField.textContent = numberB;
         console.log("A: "+ numberA);
@@ -22,7 +22,7 @@ digitsRow.addEventListener("click", e => {
         console.log("Operation: "+operation);
         console.log("Next Operation: "+nextOperation);
     }
-    else if(e.target.matches(".inputBtn") && operation === "="){
+    else if(e.target.matches(".inputBtn") && (operation === "=" || operation ==="ERR")){
         numberA = e.target.value;
         inputField.textContent = numberA;
         operation = "";
@@ -62,26 +62,29 @@ digitsRow.addEventListener("click", e => {
 function operationMath(a,b,operator){
     if (operator === "+"){
         numberA = +a+(+b);
+        operation = nextOperation;
     }//addition
     else if(operator === "-"){
         numberA = +a-(+b);
+        operation = nextOperation;
     }//subtraction
     else if(operator === "x"){
         numberA = +a*(+b);
+        operation = nextOperation;
     }//mutiply
     else if(operator === "/"){
         if (+b === 0){
             numberA="";
             numberB="";
-            operation="";
+            operation="ERR";
             nextOperation="";
-            return "ERR: Cannot divide by 0";
+            numberA = "ERR: Cannot divide by 0";
         } else {
             numberA = +a/(+b);
+            operation = nextOperation;
         }
     }//divide
     numberB = "";
-    operation = nextOperation;
     inputField.textContent = numberA;
     return numberA;
 }
