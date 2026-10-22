@@ -3,10 +3,12 @@ let numberB = "";
 let operation = "";
 let nextOperation = "";
 const digitsRow = document.querySelector("#button-container");
+const inputField = document.querySelector(".input-field");
 
 digitsRow.addEventListener("click", e => {
     if(e.target.matches(".inputBtn") && operation === ""){
         numberA += e.target.value;
+        inputField.textContent = numberA;
         console.log("A: "+ numberA);
         console.log("B: "+ numberB);
         console.log("Operation: "+operation);
@@ -14,6 +16,7 @@ digitsRow.addEventListener("click", e => {
     }//only if inputBtn
     else if(e.target.matches(".inputBtn") && operation !== "" && operation !== "="){
         numberB += e.target.value;
+        inputField.textContent = numberB;
         console.log("A: "+ numberA);
         console.log("B: "+ numberB);
         console.log("Operation: "+operation);
@@ -21,6 +24,7 @@ digitsRow.addEventListener("click", e => {
     }
     else if(e.target.matches(".inputBtn") && operation === "="){
         numberA = e.target.value;
+        inputField.textContent = numberA;
         operation = "";
         console.log("A: "+ numberA);
         console.log("B: "+ numberB);
@@ -32,6 +36,7 @@ digitsRow.addEventListener("click", e => {
         numberA = "";
         numberB = "";
         operation = "";
+        inputField.textContent = numberA;
         console.log("A: "+ numberA);
         console.log("B: "+ numberB);
         console.log("Operation: "+operation);
@@ -77,6 +82,7 @@ function operationMath(a,b,operator){
     }//divide
     numberB = "";
     operation = nextOperation;
+    inputField.textContent = numberA;
     return numberA;
 }
 

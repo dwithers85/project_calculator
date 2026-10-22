@@ -9,37 +9,40 @@
 </head>
 <body>
   <h1>Dan's Calculator</h1>
-  <input class="input-field">  
-  <div id="button-container">
-    <div id="digit-container">
-        <div class="digit-row">
-            <button class="inputBtn" value="7">7</button>
-            <button class="inputBtn" value="8">8</button>
-            <button class="inputBtn" value="9">9</button>
-        </div>
-        <div class="digit-row">
-            <button class="inputBtn" value="4">4</button>
-            <button class="inputBtn" value="5">5</button>
-            <button class="inputBtn" value="6">6</button>
-        </div>
-        <div class="digit-row">
-            <button class="inputBtn" value="1">1</button>
-            <button class="inputBtn" value="2">2</button>
-            <button class="inputBtn" value="3">3</button>
-        </div>
-        <div class="digit-row">
-            <button class="inputBtn" value="0">0</button>
-            <button class="inputBtn" value=".">.</button>
-            <button class="operandBtn" value="=">=</button>
+  <div id="calculator-container">  
+        <div class="input-field"></div>
+        <div id="button-container">
+            
+            <div id="digit-container">
+                <div class="digit-row">
+                    <button class="inputBtn" value="7">7</button>
+                    <button class="inputBtn" value="8">8</button>
+                    <button class="inputBtn" value="9">9</button>
+                </div>
+                <div class="digit-row">
+                    <button class="inputBtn" value="4">4</button>
+                    <button class="inputBtn" value="5">5</button>
+                    <button class="inputBtn" value="6">6</button>
+                </div>
+                <div class="digit-row">
+                    <button class="inputBtn" value="1">1</button>
+                    <button class="inputBtn" value="2">2</button>
+                    <button class="inputBtn" value="3">3</button>
+                </div>
+                <div class="digit-row">
+                    <button class="inputBtn" value="0">0</button>
+                    <button class="inputBtn" value=".">.</button>
+                    <button class="operandBtn" value="=">=</button>
+                </div>
+            </div>
+            <div id="operand-container">
+                <button class="operandBtn" value="/">/</button>
+                <button class="operandBtn" value="x">x</button>
+                <button class="operandBtn" value="-">-</button>
+                <button class="operandBtn" value="+">+</button>
+                <button class="clearBtn" value="CLR">CLR</button>
+            </div>
         </div>
     </div>
-    <div id="operand-container">
-        <button class="operandBtn" value="/">/</button>
-        <button class="operandBtn" value="x">x</button>
-        <button class="operandBtn" value="-">-</button>
-        <button class="operandBtn" value="+">+</button>
-        <button class="clearBtn" value="CLR">CLR</button>
-    </div>
-  </div>
 </body>
 </html>
