@@ -1,3 +1,5 @@
+//problem where dividing by zero, pressing =, then pressing another operand like + causes the code to break.
+
 let numberA = "";
 let numberB = "";
 let operation = "";
