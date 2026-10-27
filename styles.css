@@ -14,12 +14,12 @@ h1 {
     display : flex;
     height: 120px;
     width:100%;
-    gap:5px;
+    /* gap:5px; */
 }
 
 #digit-container{
     display:flex;
-    flex:1;
+    flex:2;
     flex-direction:column;
     height: 100%;
     width: 100%;
@@ -28,12 +28,21 @@ h1 {
     justify-content:space-between;
 }
 
-.digit-row .digitBtn .operandBtn{
-    flex-grow:1;
+.digit-row{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    
+}
+
+.operandBtn, .clearBtn, .inputBtn{
+    flex:1;
 }
 
 #operand-container{
     display:flex;
+    flex: 1;
+    height: 100%;
     flex-direction: column;
     justify-content: space-between;
 }
