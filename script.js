@@ -72,6 +72,7 @@ function operationMath(a,b,operator){
         }
     }//divide
     numberCurrent = "";
+    numberPrevious = truncate(numberPrevious, 15);
     inputField.textContent = numberPrevious;
 }
 
