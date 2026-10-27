@@ -9,6 +9,9 @@ const inputField = document.querySelector(".input-field");
 
 digitsRow.addEventListener("click", e => {
     if(e.target.matches(".inputBtn")){
+        if(e.target.value === "." && numberCurrent.includes(".")){
+            return;
+        }
         numberCurrent += e.target.value;
         inputField.textContent = numberCurrent;
     }//only if inputBtn
@@ -41,7 +44,6 @@ digitsRow.addEventListener("click", e => {
         else if(numberCurrent === ""){
             operation = e.target.value;
         }//only change operator
-        
     }
 });
 
@@ -61,10 +63,9 @@ function operationMath(a,b,operator){
     else if(operator === "/"){
         if (+b === 0){
             numberCurrent="";
-            numberPrevious="";
-            operation="ERR";
+            numberPrevious="ERR";
+            operation="";
             nextOperation="";
-            numberCurrent = "ERR: Cannot divide by 0";
         } else {
             numberPrevious = +a/(+b);
             operation = nextOperation;
