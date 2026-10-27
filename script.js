@@ -11,28 +11,16 @@ digitsRow.addEventListener("click", e => {
     if(e.target.matches(".inputBtn")){
         numberCurrent += e.target.value;
         inputField.textContent = numberCurrent;
-        console.log("A: "+ numberCurrent);
-        console.log("B: "+ numberPrevious);
-        console.log("Operation: "+operation);
-        console.log("Next Operation: "+nextOperation);
     }//only if inputBtn
-    else if(e.target.matches(".inputBtn") && operation !== "" && operation !== "=" && operation !== "ERR"){
-        numberPrevious += e.target.value;
-        inputField.textContent = numberPrevious;
-        console.log("A: "+ numberCurrent);
-        console.log("B: "+ numberPrevious);
-        console.log("Operation: "+operation);
-        console.log("Next Operation: "+nextOperation);
-    }
-    else if(e.target.matches(".inputBtn") && (operation === "=" || operation ==="ERR")){
-        numberCurrent = e.target.value;
-        inputField.textContent = numberCurrent;
-        operation = "";
-        console.log("A: "+ numberCurrent);
-        console.log("B: "+ numberPrevious);
-        console.log("Operation: "+operation);
-        console.log("Next Operation: "+nextOperation);
-        }
+    // else if(e.target.matches(".inputBtn") && operation !== "" && operation !== "=" && operation !== "ERR"){
+    //     numberPrevious += e.target.value;
+    //     inputField.textContent = numberPrevious;
+    // }
+    // else if(e.target.matches(".inputBtn") && (operation === "=" || operation ==="ERR")){
+    //     numberCurrent = e.target.value;
+    //     inputField.textContent = numberCurrent;
+    //     operation = "";
+    //     }
     else if(e.target.matches(".clearBtn")){
         calcInput = "";
         numberCurrent = "";
@@ -40,27 +28,34 @@ digitsRow.addEventListener("click", e => {
         operation = "";
         inputField.textContent = numberCurrent;
     }//clear calcInput
-    else if(e.target.matches(".operandBtn") && numberPrevious === ""){
+    else if(e.target.matches(".operandBtn") && (numberPrevious === "" || numberPrevious ==="ERR")){
+        numberPrevious = numberCurrent;
         operation = e.target.value;
+        numberCurrent = "";
     }
-        else if(e.target.matches(".operandBtn") && numberPrevious !== ""){
-        nextOperation = e.target.value;
-        console.log("Answer: "+operationMath(numberCurrent, numberPrevious, operation));
+        else if(e.target.matches(".operandBtn")){
+        if(numberCurrent !==""){
+            operationMath(numberPrevious, numberCurrent, operation);
+            operation = e.target.value;
+        }//operate if both numberes ready
+        else if(numberCurrent === ""){
+            operation = e.target.value;
+        }//only change operator
         
     }
 });
 
 function operationMath(a,b,operator){
     if (operator === "+"){
-        numberCurrent = +a+(+b);
+        numberPrevious = +a+(+b);
         operation = nextOperation;
     }//addition
     else if(operator === "-"){
-        numberCurrent = +a-(+b);
+        numberPrevious = +a-(+b);
         operation = nextOperation;
     }//subtraction
     else if(operator === "x"){
-        numberCurrent = +a*(+b);
+        numberPrevious = +a*(+b);
         operation = nextOperation;
     }//mutiply
     else if(operator === "/"){
@@ -71,13 +66,12 @@ function operationMath(a,b,operator){
             nextOperation="";
             numberCurrent = "ERR: Cannot divide by 0";
         } else {
-            numberCurrent = +a/(+b);
+            numberPrevious = +a/(+b);
             operation = nextOperation;
         }
     }//divide
-    numberPrevious = "";
-    inputField.textContent = numberCurrent;
-    return numberCurrent;
+    numberCurrent = "";
+    inputField.textContent = numberPrevious;
 }
 
 function sum(a,b){
