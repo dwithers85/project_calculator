@@ -3,7 +3,6 @@
 let numberCurrent = "";
 let numberPrevious = "";
 let operation = "";
-let nextOperation = "";
 const digitsRow = document.querySelector("#button-container");
 const inputField = document.querySelector(".input-field");
 
@@ -15,15 +14,6 @@ digitsRow.addEventListener("click", e => {
         numberCurrent += e.target.value;
         inputField.textContent = numberCurrent;
     }//only if inputBtn
-    // else if(e.target.matches(".inputBtn") && operation !== "" && operation !== "=" && operation !== "ERR"){
-    //     numberPrevious += e.target.value;
-    //     inputField.textContent = numberPrevious;
-    // }
-    // else if(e.target.matches(".inputBtn") && (operation === "=" || operation ==="ERR")){
-    //     numberCurrent = e.target.value;
-    //     inputField.textContent = numberCurrent;
-    //     operation = "";
-    //     }
     else if(e.target.matches(".clearBtn")){
         calcInput = "";
         numberCurrent = "";
@@ -50,25 +40,20 @@ digitsRow.addEventListener("click", e => {
 function operationMath(a,b,operator){
     if (operator === "+"){
         numberPrevious = +a+(+b);
-        operation = nextOperation;
     }//addition
     else if(operator === "-"){
         numberPrevious = +a-(+b);
-        operation = nextOperation;
     }//subtraction
     else if(operator === "x"){
         numberPrevious = +a*(+b);
-        operation = nextOperation;
     }//mutiply
     else if(operator === "/"){
         if (+b === 0){
             numberCurrent="";
             numberPrevious="ERR";
             operation="";
-            nextOperation="";
         } else {
             numberPrevious = +a/(+b);
-            operation = nextOperation;
         }
     }//divide
     numberCurrent = "";
