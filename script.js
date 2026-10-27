@@ -1,94 +1,83 @@
 //problem where dividing by zero, pressing =, then pressing another operand like + causes the code to break.
 
-let numberA = "";
-let numberB = "";
+let numberCurrent = "";
+let numberPrevious = "";
 let operation = "";
 let nextOperation = "";
 const digitsRow = document.querySelector("#button-container");
 const inputField = document.querySelector(".input-field");
 
 digitsRow.addEventListener("click", e => {
-    if(e.target.matches(".inputBtn") && operation === ""){
-        numberA += e.target.value;
-        inputField.textContent = numberA;
-        console.log("A: "+ numberA);
-        console.log("B: "+ numberB);
+    if(e.target.matches(".inputBtn")){
+        numberCurrent += e.target.value;
+        inputField.textContent = numberCurrent;
+        console.log("A: "+ numberCurrent);
+        console.log("B: "+ numberPrevious);
         console.log("Operation: "+operation);
         console.log("Next Operation: "+nextOperation);
     }//only if inputBtn
     else if(e.target.matches(".inputBtn") && operation !== "" && operation !== "=" && operation !== "ERR"){
-        numberB += e.target.value;
-        inputField.textContent = numberB;
-        console.log("A: "+ numberA);
-        console.log("B: "+ numberB);
+        numberPrevious += e.target.value;
+        inputField.textContent = numberPrevious;
+        console.log("A: "+ numberCurrent);
+        console.log("B: "+ numberPrevious);
         console.log("Operation: "+operation);
         console.log("Next Operation: "+nextOperation);
     }
     else if(e.target.matches(".inputBtn") && (operation === "=" || operation ==="ERR")){
-        numberA = e.target.value;
-        inputField.textContent = numberA;
+        numberCurrent = e.target.value;
+        inputField.textContent = numberCurrent;
         operation = "";
-        console.log("A: "+ numberA);
-        console.log("B: "+ numberB);
+        console.log("A: "+ numberCurrent);
+        console.log("B: "+ numberPrevious);
         console.log("Operation: "+operation);
         console.log("Next Operation: "+nextOperation);
         }
     else if(e.target.matches(".clearBtn")){
         calcInput = "";
-        numberA = "";
-        numberB = "";
+        numberCurrent = "";
+        numberPrevious = "";
         operation = "";
-        inputField.textContent = numberA;
-        console.log("A: "+ numberA);
-        console.log("B: "+ numberB);
-        console.log("Operation: "+operation);
-        console.log("Next Operation: "+nextOperation);
+        inputField.textContent = numberCurrent;
     }//clear calcInput
-    else if(e.target.matches(".operandBtn") && numberB === ""){
+    else if(e.target.matches(".operandBtn") && numberPrevious === ""){
         operation = e.target.value;
-        console.log("A: "+ numberA);
-        console.log("B: "+ numberB);
-        console.log("Operation: "+operation);
-        console.log("Next Operation: "+nextOperation);
     }
-        else if(e.target.matches(".operandBtn") && numberB !== ""){
+        else if(e.target.matches(".operandBtn") && numberPrevious !== ""){
         nextOperation = e.target.value;
-        console.log("A: "+ numberA);
-        console.log("B: "+ numberB);
-        console.log("Operation: "+ operation)
-        console.log("Answer: "+operationMath(numberA, numberB, operation));
+        console.log("Answer: "+operationMath(numberCurrent, numberPrevious, operation));
         
     }
 });
 
 function operationMath(a,b,operator){
     if (operator === "+"){
-        numberA = +a+(+b);
+        numberCurrent = +a+(+b);
         operation = nextOperation;
     }//addition
     else if(operator === "-"){
-        numberA = +a-(+b);
+        numberCurrent = +a-(+b);
         operation = nextOperation;
     }//subtraction
     else if(operator === "x"){
-        numberA = +a*(+b);
+        numberCurrent = +a*(+b);
         operation = nextOperation;
     }//mutiply
     else if(operator === "/"){
         if (+b === 0){
-            numberA="";
-            numberB="";
+            numberCurrent="";
+            numberPrevious="";
             operation="ERR";
             nextOperation="";
-            numberA = "ERR: Cannot divide by 0";
+            numberCurrent = "ERR: Cannot divide by 0";
         } else {
-            numberA = +a/(+b);
+            numberCurrent = +a/(+b);
             operation = nextOperation;
         }
     }//divide
-    numberB = "";
-    inputField.textContent = numberA;
-    return numberA;
+    numberPrevious = "";
+    inputField.textContent = numberCurrent;
+    return numberCurrent;
 }
 
 function sum(a,b){
