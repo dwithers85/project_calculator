@@ -12,7 +12,7 @@ digitsRow.addEventListener("click", e => {
             return;
         }
         numberCurrent += e.target.value;
-        inputField.textContent = numberCurrent;
+        inputField.textContent = truncate(numberCurrent,36);
     }//only if inputBtn
     else if(e.target.matches(".clearBtn")){
         calcInput = "";
@@ -57,8 +57,8 @@ function operationMath(a,b,operator){
         }
     }//divide
     numberCurrent = "";
-    numberPrevious = truncate(numberPrevious, 15);
-    inputField.textContent = numberPrevious;
+    // numberPrevious = truncate(numberPrevious, 36);
+    inputField.textContent = truncate(numberPrevious,36);
 }
 
 function sum(a,b){

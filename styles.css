@@ -5,14 +5,14 @@ h1 {
     display:flex;
     flex-direction:column;
     gap: 10px;
-    width:fit-content;
+    width:300px;
     margin: 0 auto;
     align-items:center;
 }
 
 #button-container{
     display : flex;
-    height: 120px;
+    height: 200px;
     width:100%;
     /* gap:5px; */
 }
@@ -37,6 +37,7 @@ h1 {
 
 .operandBtn, .clearBtn, .inputBtn{
     flex:1;
+    border-radius: 5px;
 }
 
 #operand-container{
