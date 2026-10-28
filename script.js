@@ -56,6 +56,10 @@ function operationMath(a,b,operator){
             numberPrevious = +a/(+b);
         }
     }//divide
+    else if(operator === "="){
+        numberPrevious = numberCurrent;
+        numberCurrent = "";
+    }//new operation
     numberCurrent = "";
     // numberPrevious = truncate(numberPrevious, 36);
     inputField.textContent = truncate(numberPrevious,36);
