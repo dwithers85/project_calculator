@@ -3,9 +3,41 @@
 let numberCurrent = "";
 let numberPrevious = "";
 let operation = "";
+const inputPattern = /[0-9\.]/;
+const operandPattern = /[\+\*\-\/\=]/;
 const digitsRow = document.querySelector("#button-container");
 const inputField = document.querySelector(".input-field");
 
+document.addEventListener("keydown", e => {
+    if(operandPattern.test(e.key)){
+        console.log(`Operand Pressed: ${e.key}`);
+        if(numberPrevious === "" || numberPrevious ==="ERR"){
+            numberPrevious = numberCurrent;
+            operation = e.key;
+            numberCurrent = "";
+        }
+        else if(numberCurrent !==""){
+            operationMath(numberPrevious, numberCurrent, operation);
+            operation = e.key;
+        }//operate if both numberes ready
+        else if(numberCurrent === ""){
+            operation = e.key;
+        }//only change operator
+        
+    }
+    else if(inputPattern.test(e.key)){
+        console.log(`Number Pressed: ${e.key}`);
+        if(e.key === "." && numberCurrent.includes(".")){
+            return;
+        }
+        numberCurrent += e.key;
+        inputField.textContent = truncate(numberCurrent,36);
+    }//only if inputBtn
+    
+    else{
+    console.log(`Forbidden Key Pressed: ${e.key}`);
+    }
+});
 digitsRow.addEventListener("click", e => {
     if(e.target.matches(".inputBtn")){
         if(e.target.value === "." && numberCurrent.includes(".")){
@@ -44,7 +76,7 @@ function operationMath(a,b,operator){
     else if(operator === "-"){
         numberPrevious = +a-(+b);
     }//subtraction
-    else if(operator === "x"){
+    else if(operator === "*"){
         numberPrevious = +a*(+b);
     }//mutiply
     else if(operator === "/"){
